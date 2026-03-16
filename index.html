@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="La Bella Cucina — Authentic Italian flavors crafted with love. View our menu, find our location, and visit us today." />
+  <title>La Bella Cucina — Authentic Italian Restaurant</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍽️</text></svg>" />
+</head>
+<body>
+
+  <!-- ── Mobile Menu ── -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation menu">
+    <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
+    <a href="index.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <!-- ── Navbar ── -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="nav-logo">La <span>Bella</span> Cucina</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <section class="hero" id="home">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <span class="hero-badge">✦ Est. 1998 · New York City ✦</span>
+      <h1 class="hero-title">La <em>Bella</em> Cucina</h1>
+      <p class="hero-subtitle">Authentic flavors, crafted with love for over 25 years</p>
+
+      <div class="hero-actions">
+        <a href="menu.html" class="btn btn-primary">🍽 View Menu</a>
+        <a href="#" class="btn btn-outline" id="callBtn">📞 Call Now</a>
+        <a href="#contact" class="btn btn-outline">📍 Get Directions</a>
+      </div>
+    </div>
+
+    <div class="hero-scroll" aria-hidden="true">Scroll</div>
+  </section>
+
+  <!-- ── Featured Menu Preview ── -->
+  <section class="menu-section section" id="menu-preview">
+    <div class="section-header">
+      <span class="section-tag">From Our Kitchen</span>
+      <h2 class="section-title">Today's Highlights</h2>
+      <div class="section-divider"></div>
+      <p class="section-sub">A taste of what awaits you. Visit our full menu for all offerings.</p>
+    </div>
+
+    <div class="menu-grid" id="featuredGrid">
+      <div class="menu-loading">
+        <div class="spinner"></div>
+        <span>Loading menu…</span>
+      </div>
+    </div>
+
+    <div style="text-align:center; margin-top:3rem;">
+      <a href="menu.html" class="btn btn-primary">View Full Menu →</a>
+    </div>
+  </section>
+
+  <!-- ── About Section ── -->
+  <section class="about-section" id="about">
+    <div class="about-grid">
+      <div class="about-image-wrap">
+        <img
+          src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80"
+          alt="La Bella Cucina restaurant interior"
+          loading="lazy"
+        />
+      </div>
+      <div class="about-content">
+        <span class="section-tag">Our Story</span>
+        <h2 class="section-title">A Family Tradition<br><em class="italic-accent">Since 1998</em></h2>
+        <div class="section-divider" style="margin:1.25rem 0;"></div>
+        <p class="about-text">
+          La Bella Cucina was born from a simple dream: to bring the true flavors of the Italian countryside to New York City. Founded by the Rossetti family, our kitchen has been crafting handmade pastas, slow-simmered sauces, and wood-fired dishes with the same love and care since the day we opened.
+        </p>
+        <p class="about-text">
+          Every ingredient is sourced with intention — local produce, imported Italian staples, and family recipes passed down through three generations. When you dine with us, you're not just eating — you're stepping into our home.
+        </p>
+        <div class="about-stats">
+          <div class="stat-item">
+            <div class="stat-number">25+</div>
+            <div class="stat-label">Years Open</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">60+</div>
+            <div class="stat-label">Menu Items</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">4.9★</div>
+            <div class="stat-label">Avg Rating</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Contact Section ── -->
+  <section class="contact-section section" id="contact">
+    <div class="section-header">
+      <span class="section-tag">Find Us</span>
+      <h2 class="section-title">Visit Us Today</h2>
+      <div class="section-divider"></div>
+      <p class="section-sub">We'd love to see you. Come in, sit down, and let us take care of you.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-detail-label">Address</div>
+            <div class="contact-detail-value" id="contactAddress">Loading…</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div>
+            <div class="contact-detail-label">Phone</div>
+            <div class="contact-detail-value" id="contactPhone">Loading…</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🕐</div>
+          <div>
+            <div class="contact-detail-label">Hours</div>
+            <div class="contact-detail-value" id="contactHours">Loading…</div>
+          </div>
+        </div>
+        <div class="contact-cta-row">
+          <a href="#" class="btn btn-gold" id="callBtnContact">📞 Call to Reserve</a>
+          <a href="#" class="btn btn-outline" id="directionsBtn" target="_blank" rel="noopener">🗺 Open in Maps</a>
+        </div>
+      </div>
+
+      <div class="map-embed">
+        <iframe
+          id="mapEmbed"
+          src="about:blank"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Restaurant location on Google Maps"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WiFi Section ── -->
+  <section class="wifi-section" id="wifiSection" style="display:none;">
+    <div class="wifi-card">
+      <div class="wifi-icon-wrap">📶</div>
+      <div class="wifi-content">
+        <div class="wifi-title">Free Guest WiFi</div>
+        <div class="wifi-subtitle">Connect while you dine</div>
+
+        <div class="wifi-field">
+          <span class="wifi-field-label">Network Name (SSID)</span>
+          <span class="wifi-field-value">
+            <span id="wifiNameDisplay">—</span>
+            <button class="wifi-copy-btn" id="copyWifiName" title="Copy network name">Copy</button>
+          </span>
+        </div>
+
+        <div class="wifi-field">
+          <span class="wifi-field-label">Password</span>
+          <div class="wifi-password-wrap">
+            <span class="wifi-password-text" id="wifiPassDisplay">••••••••</span>
+            <button class="wifi-toggle-pass" id="toggleWifiPass" title="Show/hide password">👁</button>
+            <button class="wifi-copy-btn" id="copyWifiPass" title="Copy password">Copy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="footer-logo">La <span>Bella</span> Cucina</div>
+    <ul class="footer-nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="admin.html">Admin</a></li>
+    </ul>
+    <p class="footer-copy">© <span id="footerYear"></span> La Bella Cucina. All rights reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

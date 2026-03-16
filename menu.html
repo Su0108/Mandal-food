@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="La Bella Cucina menu — browse our full selection of authentic Italian dishes, from handmade pastas to wood-fired mains." />
+  <title>Menu — La Bella Cucina</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍽️</text></svg>" />
+</head>
+<body>
+
+  <!-- ── Mobile Menu ── -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation menu">
+    <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
+    <a href="index.html">Home</a>
+    <a href="menu.html">Menu</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+
+  <!-- ── Navbar ── -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="nav-logo">La <span>Bella</span> Cucina</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ── Page Banner ── -->
+  <header class="page-banner">
+    <span class="section-tag">Crafted With Love</span>
+    <h1>Our Full Menu</h1>
+    <div class="section-divider" style="margin:1rem auto;"></div>
+    <p style="color:rgba(250,246,238,0.6); font-size:0.95rem; max-width:440px; margin:0 auto;">
+      Every dish is prepared fresh, daily. No shortcuts, no compromises.
+    </p>
+  </header>
+
+  <!-- ── Menu Section ── -->
+  <section class="menu-section section" id="menu">
+    <div class="section-header" style="margin-bottom:1rem;">
+      <p id="menuCount" style="color:var(--text-light); font-size:0.9rem;"></p>
+    </div>
+
+    <div class="menu-grid" id="menuGrid">
+      <div class="menu-loading">
+        <div class="spinner"></div>
+        <span>Loading delicious items…</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA Strip ── -->
+  <section style="background:var(--burgundy-dark); padding:4rem 2rem; text-align:center;">
+    <p style="font-family:'Cormorant Garamond',serif; font-style:italic; color:rgba(250,246,238,0.7); font-size:1.1rem; margin-bottom:1.5rem;">
+      See something you like? Give us a call and we'll have your table ready.
+    </p>
+    <a href="#" class="btn btn-gold" id="menuCallBtn">📞 Reserve by Phone</a>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer class="footer">
+    <div class="footer-logo">La <span>Bella</span> Cucina</div>
+    <ul class="footer-nav">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <p class="footer-copy">© <span id="footerYear"></span> La Bella Cucina. All rights reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/menu.js"></script>
+</body>
+</html>

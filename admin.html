@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel — La Bella Cucina</title>
+  <link rel="stylesheet" href="css/admin.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚙️</text></svg>" />
+  <!-- Prevent indexing of admin page -->
+  <meta name="robots" content="noindex, nofollow" />
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════
+       LOGIN PAGE
+  ══════════════════════════════════════════ -->
+  <div class="login-page" id="loginPage">
+    <div class="login-card">
+      <div class="login-brand">
+        <div class="login-brand-name">La <span>Bella</span> Cucina</div>
+        <div class="login-brand-sub">Admin Dashboard</div>
+        <div class="login-divider"></div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="loginEmail">Email Address</label>
+        <input
+          type="email"
+          id="loginEmail"
+          class="form-input"
+          placeholder="admin@restaurant.com"
+          autocomplete="email"
+        />
+        <div class="form-error" id="emailError">Please enter a valid email.</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="loginPassword">Password</label>
+        <input
+          type="password"
+          id="loginPassword"
+          class="form-input"
+          placeholder="••••••••"
+          autocomplete="current-password"
+        />
+        <div class="form-error" id="passwordError">Password is required.</div>
+      </div>
+
+      <div class="form-error" id="loginError" style="margin-bottom:1rem;"></div>
+
+      <button class="btn-admin btn-admin-primary btn-admin-full" id="loginBtn" type="button">
+        Sign In →
+      </button>
+
+      <p style="text-align:center; margin-top:1.25rem; font-size:0.78rem; color:var(--text-light);">
+        <a href="index.html" style="color:var(--burgundy);">← Back to website</a>
+      </p>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════
+       ADMIN DASHBOARD (hidden until logged in)
+  ══════════════════════════════════════════ -->
+  <div id="dashboardPage" style="display:none;">
+
+    <!-- Mobile top bar -->
+    <div class="admin-mobile-topbar">
+      <span class="admin-mobile-brand">La <span>Bella</span> Cucina</span>
+      <button class="btn-menu-toggle" id="sidebarToggle" aria-label="Toggle sidebar">☰</button>
+    </div>
+
+    <div class="admin-layout">
+
+      <!-- ── Sidebar ── -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+          <span class="sidebar-brand-name">La <span>Bella</span> Cucina</span>
+          <span class="sidebar-brand-sub">Admin Panel</span>
+        </div>
+
+        <nav class="sidebar-nav">
+          <div class="sidebar-section-label">Dashboard</div>
+          <a data-panel="overview" class="active">
+            <span class="nav-icon">📊</span> Overview
+          </a>
+
+          <div class="sidebar-section-label">Menu</div>
+          <a data-panel="menu">
+            <span class="nav-icon">🍽</span> Menu Items
+          </a>
+          <a data-panel="add-item">
+            <span class="nav-icon">➕</span> Add New Item
+          </a>
+
+          <div class="sidebar-section-label">Settings</div>
+          <a data-panel="settings">
+            <span class="nav-icon">⚙️</span> Restaurant Info
+          </a>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="sidebar-user" id="sidebarUserEmail">Loading…</div>
+          <button class="btn-logout" id="logoutBtn" type="button">
+            🚪 Sign Out
+          </button>
+        </div>
+      </aside>
+
+      <!-- ── Main Content ── -->
+      <main class="admin-main">
+
+        <!-- ── OVERVIEW PANEL ── -->
+        <section class="panel-section active" id="panel-overview">
+          <div class="admin-topbar">
+            <div>
+              <div class="admin-page-title">
+                Dashboard
+                <span>Welcome back 👋</span>
+              </div>
+            </div>
+            <a href="index.html" target="_blank" class="btn-admin btn-admin-outline" style="font-size:0.8rem;">
+              🌐 View Site
+            </a>
+          </div>
+
+          <div class="stats-row">
+            <div class="stat-card">
+              <div class="stat-card-icon burgundy">🍽</div>
+              <div>
+                <div class="stat-card-num" id="statMenuCount">—</div>
+                <div class="stat-card-label">Menu Items</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-icon gold">📸</div>
+              <div>
+                <div class="stat-card-num" id="statWithImages">—</div>
+                <div class="stat-card-label">With Images</div>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-card-icon green">✅</div>
+              <div>
+                <div class="stat-card-num" id="statStatus">Live</div>
+                <div class="stat-card-label">Site Status</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-panel">
+            <div class="card-panel-header">
+              <span class="card-panel-title">Recent Menu Items</span>
+              <button class="btn-admin btn-admin-primary btn-admin-sm" data-panel="add-item" id="overviewAddBtn">+ Add Item</button>
+            </div>
+            <div class="card-panel-body" style="padding:0;">
+              <div class="admin-table-wrap">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Image</th>
+                      <th>Name</th>
+                      <th>Price</th>
+                      <th>Added</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="overviewTableBody">
+                    <tr><td class="table-empty" colspan="5">Loading…</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── MENU ITEMS PANEL ── -->
+        <section class="panel-section" id="panel-menu">
+          <div class="admin-topbar">
+            <div class="admin-page-title">
+              Menu Items
+              <span id="menuItemsCount">All items</span>
+            </div>
+            <button class="btn-admin btn-admin-primary" data-panel="add-item" id="menuAddBtn">+ Add New Item</button>
+          </div>
+
+          <div class="card-panel">
+            <div class="card-panel-body" style="padding:0;">
+              <div class="admin-table-wrap">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Image</th>
+                      <th>Name</th>
+                      <th>Price</th>
+                      <th>Added</th>
+                      <th style="text-align:right;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="menuTableBody">
+                    <tr><td class="table-empty" colspan="5">Loading…</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── ADD ITEM PANEL ── -->
+        <section class="panel-section" id="panel-add-item">
+          <div class="admin-topbar">
+            <div class="admin-page-title">
+              Add Menu Item
+              <span>Fill in the details below</span>
+            </div>
+          </div>
+
+          <div class="card-panel">
+            <div class="card-panel-body">
+
+              <div class="form-group">
+                <label class="form-label" for="itemName">Item Name *</label>
+                <input type="text" id="itemName" class="form-input" placeholder="e.g. Spaghetti Carbonara" />
+                <div class="form-error" id="itemNameError">Name is required.</div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="itemPrice">Price (USD) *</label>
+                <input type="number" id="itemPrice" class="form-input" placeholder="e.g. 18.99" min="0" step="0.01" />
+                <div class="form-error" id="itemPriceError">Enter a valid price.</div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Food Image</label>
+                <div class="image-drop-zone" id="dropZone">
+                  <input type="file" id="imageFile" accept="image/jpeg,image/png,image/webp" />
+                  <div class="image-drop-icon">🖼</div>
+                  <p class="image-drop-text">
+                    <strong>Click to upload</strong> or drag & drop<br>
+                    <span style="font-size:0.78rem;">JPEG, PNG, WebP — max 5 MB</span>
+                  </p>
+                </div>
+
+                <div class="upload-progress" id="uploadProgress">
+                  <div class="progress-bar-track">
+                    <div class="progress-bar-fill" id="progressBar"></div>
+                  </div>
+                  <div class="progress-text" id="progressText">Uploading…</div>
+                </div>
+
+                <div class="image-preview-wrap" id="imagePreviewWrap">
+                  <img src="" alt="Preview" class="image-preview" id="imagePreview" />
+                </div>
+              </div>
+
+              <div style="display:flex; gap:0.75rem; margin-top:0.5rem;">
+                <button class="btn-admin btn-admin-primary" id="saveItemBtn" type="button">💾 Save Item</button>
+                <button class="btn-admin btn-admin-outline" id="cancelAddBtn" type="button">Cancel</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── SETTINGS PANEL ── -->
+        <section class="panel-section" id="panel-settings">
+          <div class="admin-topbar">
+            <div class="admin-page-title">
+              Restaurant Info
+              <span>These values appear on your public website</span>
+            </div>
+          </div>
+
+          <div class="card-panel">
+            <div class="card-panel-header">
+              <span class="card-panel-title">Contact & Location Details</span>
+            </div>
+            <div class="card-panel-body">
+              <div class="settings-grid">
+                <div class="form-group">
+                  <label class="form-label" for="settingPhone">Phone Number</label>
+                  <input type="text" id="settingPhone" class="form-input" placeholder="+1 (555) 123-4567" />
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="settingOpenTime">Opening Hours</label>
+                  <input type="text" id="settingOpenTime" class="form-input" placeholder="Mon–Fri: 11am–10pm" />
+                </div>
+                <div class="form-group full">
+                  <label class="form-label" for="settingAddress">Address</label>
+                  <input type="text" id="settingAddress" class="form-input" placeholder="123 Olive Street, New York, NY 10013" />
+                </div>
+                <div class="form-group full">
+                  <label class="form-label" for="settingMapUrl">Google Maps Embed URL</label>
+                  <textarea
+                    id="settingMapUrl"
+                    class="form-input form-textarea"
+                    placeholder="Paste the full Google Maps embed URL here…"
+                    rows="3"
+                  ></textarea>
+                </div>
+              </div>
+              <button class="btn-admin btn-admin-primary" id="saveSettingsBtn" type="button">💾 Save Settings</button>
+            </div>
+          </div>
+
+          <!-- WiFi Card -->
+          <div class="card-panel">
+            <div class="card-panel-header">
+              <span class="card-panel-title">📶 Guest WiFi</span>
+              <label class="wifi-toggle-label" style="display:flex;align-items:center;gap:0.6rem;cursor:pointer;font-size:0.85rem;color:var(--text-mid);">
+                <span>Show on website</span>
+                <div class="toggle-switch" id="wifiToggleWrap">
+                  <input type="checkbox" id="wifiEnabled" style="display:none;" />
+                  <div class="toggle-track" id="wifiToggleTrack">
+                    <div class="toggle-thumb"></div>
+                  </div>
+                </div>
+              </label>
+            </div>
+            <div class="card-panel-body" id="wifiFieldsWrap">
+              <div class="settings-grid">
+                <div class="form-group">
+                  <label class="form-label" for="settingWifiName">WiFi Network Name (SSID)</label>
+                  <input type="text" id="settingWifiName" class="form-input" placeholder="e.g. LaBellaCucina_Guest" />
+                </div>
+                <div class="form-group" style="position:relative;">
+                  <label class="form-label" for="settingWifiPass">WiFi Password</label>
+                  <div style="position:relative;">
+                    <input type="password" id="settingWifiPass" class="form-input" placeholder="e.g. welcome2024" style="padding-right:2.8rem;" />
+                    <button
+                      type="button"
+                      id="toggleAdminWifiPass"
+                      style="position:absolute;right:0.75rem;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;font-size:1rem;color:var(--text-light);"
+                      title="Show/hide password"
+                    >👁</button>
+                  </div>
+                </div>
+              </div>
+              <button class="btn-admin btn-admin-primary" id="saveWifiBtn" type="button" style="margin-top:0.5rem;">📶 Save WiFi Settings</button>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div><!-- end admin-layout -->
+  </div><!-- end dashboardPage -->
+
+
+  <!-- ── EDIT ITEM MODAL ── -->
+  <div class="modal-overlay" id="editModal" role="dialog" aria-modal="true" aria-labelledby="editModalTitle">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 class="modal-title" id="editModalTitle">Edit Menu Item</h3>
+        <button class="modal-close" id="editModalClose" aria-label="Close modal">✕</button>
+      </div>
+
+      <input type="hidden" id="editItemId" />
+
+      <div class="form-group">
+        <label class="form-label" for="editItemName">Item Name *</label>
+        <input type="text" id="editItemName" class="form-input" />
+        <div class="form-error" id="editItemNameError">Name is required.</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="editItemPrice">Price (USD) *</label>
+        <input type="number" id="editItemPrice" class="form-input" min="0" step="0.01" />
+        <div class="form-error" id="editItemPriceError">Enter a valid price.</div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Replace Image (optional)</label>
+        <div class="image-drop-zone" id="editDropZone" style="padding:1.25rem;">
+          <input type="file" id="editImageFile" accept="image/jpeg,image/png,image/webp" />
+          <div class="image-drop-icon" style="font-size:1.5rem;">🖼</div>
+          <p class="image-drop-text"><strong>Click to select</strong> a new image</p>
+        </div>
+        <div class="image-preview-wrap" id="editImagePreviewWrap">
+          <img src="" alt="Current image" class="image-preview" id="editImagePreview" />
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-admin btn-admin-outline" id="editCancelBtn" type="button">Cancel</button>
+        <button class="btn-admin btn-admin-primary" id="updateItemBtn" type="button">💾 Update Item</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DELETE CONFIRM MODAL ── -->
+  <div class="modal-overlay" id="deleteModal" role="dialog" aria-modal="true" aria-labelledby="deleteModalTitle">
+    <div class="modal" style="max-width:400px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="deleteModalTitle">Delete Item</h3>
+        <button class="modal-close" id="deleteModalClose" aria-label="Close">✕</button>
+      </div>
+      <p style="color:var(--text-mid); font-size:0.95rem; line-height:1.6;">
+        Are you sure you want to delete <strong id="deleteItemName"></strong>? This action cannot be undone.
+      </p>
+      <input type="hidden" id="deleteItemId" />
+      <div class="modal-footer">
+        <button class="btn-admin btn-admin-outline" id="deleteCancelBtn" type="button">Cancel</button>
+        <button class="btn-admin btn-admin-danger" id="confirmDeleteBtn" type="button">🗑 Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Toast ── -->
+  <div class="admin-toast" id="adminToast" role="alert" aria-live="polite"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
